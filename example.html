@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angular Displayable Password</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/2.3.1/spruce/bootstrap.min.css">
+
+</head>
+    <body ng-app="ExampleApp">
+
+        <div class="container" ng-controller="MainCtrl">
+
+            <div class="row">
+                <h1>Angular Displayable Password Example</h1>
+            </div>
+
+            <form name="form" ng-submit="submit()" novalidate="novalidate">
+                <displayable-password
+                        name="userPassword"
+                        placeholder="password"
+                        ng-minlength="8"
+                        ng-maxlength="16"
+                        ng-required="true"
+                        ng-model="password">
+                </displayable-password>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        <script src="angular-displayable-password.js"></script>
+        <script>
+            angular.module('ExampleApp', ['mchambaud.angular-displayable-password']).
+                    controller('MainCtrl', function ($scope) {
+                        $scope.password = '';
+
+                        $scope.submit = function() {
+                            if($scope.form.$valid){
+                                alert('Password: ' + $scope.password)
+                            } else {
+                                alert('INVALID...')
+                            }
+                        }
+                    });
+        </script>
+    </body>
+</html>
