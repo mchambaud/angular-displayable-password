@@ -34,10 +34,10 @@ function displayablePassword() {
 							'ng-minlength="minLength"' +
 							'ng-pattern="pattern"> ' +
 
-						'<input type="checkbox" ' +
+						'<input type="checkbox" id="display-password" ' +
 							'ng-click="isVisible = !isVisible"> ' +
 
-						'<label for="{{name}}">{{isVisible ? labelVisible : labelHidden}}</label>' +
+						'<label for="display-password">{{isVisible ? labelVisible : labelHidden}}</label>' +
 					'</div>',
 		link: function(scope, element, attrs){
 			scope.isVisible = true;
