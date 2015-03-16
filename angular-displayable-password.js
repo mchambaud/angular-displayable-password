@@ -13,7 +13,8 @@ function displayablePassword() {
 			required:'=ngRequired',
 			minLength: '=ngMinlength',
 			maxLength: '=ngMaxlength',
-			pattern: '=ngPattern'
+			pattern: '=ngPattern',
+			name: '@'
 		},
 		template:	'<div class="angular-displayable-password">' +
 						'<input type="text"' +
@@ -23,6 +24,7 @@ function displayablePassword() {
 
 						'<input type="password"' +
 							'placeholder="{{placeholder}}"' +
+							'name="{{name}}"' +
 							'ng-show="isVisible"' +
 							'ng-model="password"' +
 							'ng-required="required"' +
