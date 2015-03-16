@@ -37,7 +37,7 @@ function displayablePassword() {
 						'<input type="checkbox" id="display-password" ' +
 							'ng-click="isVisible = !isVisible"> ' +
 
-						'<label for="display-password">{{isVisible ? labelVisible : labelHidden}}</label>' +
+						'<label for="display-password" title="{{isVisible ? labelVisible : labelHidden}}">{{isVisible ? labelVisible : labelHidden}}</label>' +
 					'</div>',
 		link: function(scope, element, attrs){
 			scope.isVisible = true;
