@@ -9,12 +9,14 @@ function displayablePassword() {
 		replace: true,
 		scope: {
 			password:'=ngModel',
-			placeholder:'@',
 			required:'=ngRequired',
 			minLength: '=ngMinlength',
 			maxLength: '=ngMaxlength',
 			pattern: '=ngPattern',
-			name: '@'
+			placeholder:'@',
+			name: '@',
+			labelVisible: '@',
+			labelHidden: '@'
 		},
 		template:	'<div class="angular-displayable-password">' +
 						'<input type="text"' +
@@ -34,6 +36,8 @@ function displayablePassword() {
 
 						'<input type="checkbox" ' +
 							'ng-click="isVisible = !isVisible"> ' +
+
+						'<label for="{{name}}">{{isVisible ? labelVisible : labelHidden}}</label>' +
 					'</div>',
 		link: function(scope, element, attrs){
 			scope.isVisible = true;
