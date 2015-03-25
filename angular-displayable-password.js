@@ -41,7 +41,7 @@ function displayablePassword() {
 
 						'<label for="display-password" title="{{isVisible ? labelVisible : labelHidden}}">{{isVisible ? labelVisible : labelHidden}}</label>' +
 					'</div>',
-		controller: function($scope) {
+		controller: ['$scope', function($scope) {
 			$scope.isVisible = true;
 			$scope.notifier = function(viewValue) {
 				return $scope.visiblePassword = viewValue;
@@ -50,7 +50,7 @@ function displayablePassword() {
 			$scope.$watch('visiblePassword', function(v){
 				$scope.password = v;
 			})
-		}
+		}]
 	}
 }
 
