@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('mchambaud.angular-displayable-password', [])
-	.directive('displayablePassword', displayablePassword);
+	.directive('displayablePassword', displayablePassword)
+	.directive('inputChangeNotifier', inputChangeNotifier);
 
 function displayablePassword() {
 	return {
@@ -22,13 +23,14 @@ function displayablePassword() {
 						'<input type="text"' +
 							'placeholder="{{placeholder}}"' +
 							'ng-hide="isVisible"' +
-							'ng-model="password"> ' +
+							'ng-model="visiblePassword"> ' +
 
-						'<input type="password"' +
+						'<input input-change-notifier id="inputPassword" type="password"' +
 							'placeholder="{{placeholder}}"' +
 							'name="{{name}}"' +
 							'ng-show="isVisible"' +
 							'ng-model="password"' +
+							'ng-model-options="{ updateOn: \'change blur\' }"' +
 							'ng-required="required"' +
 							'ng-maxlength="maxLength"' +
 							'ng-minlength="minLength"' +
@@ -39,8 +41,30 @@ function displayablePassword() {
 
 						'<label for="display-password" title="{{isVisible ? labelVisible : labelHidden}}">{{isVisible ? labelVisible : labelHidden}}</label>' +
 					'</div>',
-		link: function(scope, element, attrs){
-			scope.isVisible = true;
+		controller: function($scope) {
+			$scope.isVisible = true;
+			$scope.notifier = function(viewValue) {
+				return $scope.visiblePassword = viewValue;
+			};
+
+			$scope.$watch('visiblePassword', function(v){
+				$scope.password = v;
+			})
+		}
+	}
+}
+
+function inputChangeNotifier() {
+	return {
+		require: ['^displayablePassword', 'ngModel'],
+		link: function(scope, element, attrs, ctrls) {
+			var ngModel = ctrls[1];
+
+			ngModel.$parsers.unshift(function(inputVal) {
+				scope.notifier(inputVal);
+
+				return inputVal;
+			});
 		}
 	}
 }
