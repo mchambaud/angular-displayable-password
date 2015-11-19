@@ -1,0 +1,21 @@
+{
+  "name": "angular-displayable-password",
+  "version": "1.0.0",
+  "description": "Angular directive to display content of a password field.",
+  "main": "angular-displayable-password.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mchambaud/angular-displayable-password.git"
+  },
+  "keywords": [
+    "angular",
+    "password",
+    "displayable"
+  ],
+  "author": "Michael Chambaud",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/mchambaud/angular-displayable-password/issues"
+  },
+  "homepage": "https://github.com/mchambaud/angular-displayable-password"
+}
